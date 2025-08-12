@@ -1,6 +1,8 @@
 import { BrowserRouter, Routes, Route,Link } from "react-router-dom"
 import Home from './components/Home'
 import About from "./components/About"
+import "./server"
+import Vans from "./components/Vans"
 function App() {
   return (
     <BrowserRouter>
@@ -14,7 +16,7 @@ function App() {
    
     <div className="flex space-x-6">
       <Link to="/about" className="text-gray-700 hover:text-gray-900 font-medium">About</Link>
-      <a href="#" className="text-gray-700 hover:text-gray-900 font-medium">Vans</a>
+      <Link to="/vans" className="text-gray-700 hover:text-gray-900 font-medium">Vans</Link>
     </div>
   </nav>
 </header>
@@ -22,6 +24,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/about' element={<About />} />
+        <Route path="/vans" element={<Vans />} />
       </Routes>
     </BrowserRouter>
   )
