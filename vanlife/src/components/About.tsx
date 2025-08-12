@@ -5,7 +5,7 @@ function About() {
             <img
                 src={`https://picsum.photos/1600/900?random=${Date.now()}`}
                 alt="About hero"
-                className="max-w-full h-[200px] w-full object-cover"
+                className="max-w-full h-[200px] w-full object-cover object-center"
             />
 
             <div className="px-[23px] text-[#161616] mb-[55px]">
