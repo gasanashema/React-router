@@ -1,16 +1,17 @@
+import { Link } from "react-router-dom"
 const Header = () => {
   return (
-    <header className="bg-gray-100">
+          <header className="bg-[#FFF7ED]">
   <nav className="max-w-7xl mx-auto flex justify-between items-center py-4 px-6">
 
-    <div className="text-2xl font-bold text-gray-900">
+    <Link to="/" className="text-2xl font-bold text-gray-900">
       #VANLIFE
-    </div>
+    </Link>
 
    
     <div className="flex space-x-6">
-      <a href="#" className="text-gray-700 hover:text-gray-900 font-medium">About</a>
-      <a href="#" className="text-gray-700 hover:text-gray-900 font-medium">Vans</a>
+      <Link to="/about" className="text-gray-700 hover:text-gray-900 font-medium">About</Link>
+      <Link to="/vans" className="text-gray-700 hover:text-gray-900 font-medium">Vans</Link>
     </div>
   </nav>
 </header>
