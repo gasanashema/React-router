@@ -3,10 +3,11 @@ import Home from './components/Home'
 import About from "./components/About"
 import "./server"
 import Vans from "./components/Vans"
+import VanDetail from "./components/VanDetail"
 function App() {
   return (
     <BrowserRouter>
-        <header className="bg-gray-100">
+        <header className="bg-[#FFF7ED]">
   <nav className="max-w-7xl mx-auto flex justify-between items-center py-4 px-6">
 
     <Link to="/" className="text-2xl font-bold text-gray-900">
@@ -25,6 +26,7 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='/about' element={<About />} />
         <Route path="/vans" element={<Vans />} />
+        <Route path="/vans/:id" element={<VanDetail />} />
       </Routes>
     </BrowserRouter>
   )
