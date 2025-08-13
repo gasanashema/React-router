@@ -1,18 +1,39 @@
-import { Link } from "react-router-dom"
+import { NavLink } from "react-router-dom"
 const Header = () => {
   return (
           <header className="bg-[#FFF7ED]">
   <nav className="max-w-7xl mx-auto flex justify-between items-center py-4 px-6">
 
-    <Link to="/" className="text-2xl font-bold text-gray-900">
+    <NavLink to="/" className="text-2xl font-bold text-gray-900">
       #VANLIFE
-    </Link>
+    </NavLink>
 
    
     <div className="flex space-x-6">
-      <Link to="/host" className="text-gray-700 hover:text-gray-900 font-medium">Hosts</Link>
-      <Link to="/about" className="text-gray-700 hover:text-gray-900 font-medium">About</Link>
-      <Link to="/vans" className="text-gray-700 hover:text-gray-900 font-medium">Vans</Link>
+      <NavLink
+        to="/host"
+        className={({ isActive }: { isActive: boolean }) =>
+           isActive ? "hover:text-gray-900 font-semibold text-amber-700" : "text-gray-700 hover:text-gray-900 font-semibold"
+        }
+      >
+        Hosts
+      </NavLink>
+      <NavLink
+        to="/about"
+        className={({ isActive }: { isActive: boolean }) =>
+           isActive ? "hover:text-gray-900 font-semibold text-amber-700" : "text-gray-700 hover:text-gray-900 font-semibold"
+        }
+      >
+        About
+      </NavLink>
+      <NavLink
+        to="/vans"
+        className={({ isActive }: { isActive: boolean }) =>
+           isActive ? "hover:text-gray-900 font-semibold text-amber-700" : "text-gray-700 hover:text-gray-900 font-semibold"
+        }
+      >
+        Vans
+      </NavLink>
     </div>
   </nav>
 </header>
