@@ -1,13 +1,12 @@
-import React from 'react'
-import { NavLink, Outlet } from 'react-router-dom'
+import { NavLink, Outlet,Link } from 'react-router-dom'
 
 const HostLayout = () => {
   return (
     <>
-        <nav>
+        <nav className='flex justify-center'>
             <NavLink
                 className={({ isActive }) =>
-                    `px-7${isActive ? ' text-blue-600 font-bold' : ''}`
+                    `px-7 ${isActive ? ' text-blue-600 font-bold px-6' : 'px-6'}`
                 }
                 end
                 to="/host"
@@ -16,30 +15,31 @@ const HostLayout = () => {
             </NavLink>
             <NavLink
                 className={({ isActive }) =>
-                    `px-7${isActive ? ' text-blue-600 font-bold' : ''}`
+                    `px-7 ${isActive ? ' text-blue-600 font-bold px-6' : 'px-6'}`
                 }
-                to="/host/income"
+                to="income"
             >
                 Income
             </NavLink>
             <NavLink
                 className={({ isActive }) =>
-                    `px-7${isActive ? ' text-blue-600 font-bold' : ''}`
+                    `px-7 ${isActive ? ' text-blue-600 font-bold px-6' : 'px-6'}`
                 }
-                to="/host/vans"
+                to="vans"
             >
                 vans
             </NavLink>
             <NavLink
                 className={({ isActive }) =>
-                    `px-7${isActive ? ' text-blue-600 font-bold' : ''}`
+                    `px-7 ${isActive ? ' text-blue-600 font-bold px-6' : 'px-6'}`
                 }
-                to="/host/reviews"
+                to="reviews"
             >
                 Reviews
             </NavLink>
-            <Outlet />
         </nav>
+        
+            <Outlet />
     </>
   )
 }
