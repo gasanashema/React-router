@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react"
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 
 const Vans = () => {
+    const [searchParams, setSearchParams] = useSearchParams();
     const [vans, setVans] = useState([])
     useEffect(() => {
         fetch('/api/vans').then(res => res.json()).then(res => setVans(res.vans)).catch(e => console.log(e));
     }, []);
-    const vanElements = vans.map(van => (
+    const displayedVans = searchParams.get('type') ? vans.filter(van => van.type === searchParams.get('type')) : vans
+    const vanElements = displayedVans.map(van => (
         <div key={van.id} className="van-tile">
             <Link to={`/vans/${van.id}`} aria-label={`View details for ${van.name}, priced at $${van.price} per day`}>
                 <img
@@ -40,6 +42,36 @@ const Vans = () => {
     return (
         <div className="px-[23px]">
             <h1 className="text-3xl font-bold">Explore Our Vans Options</h1>
+            <div className="flex space-x-5">
+                <button
+                    onClick={() => setSearchParams({ type: 'simple' })}
+                    className="h-[34px] px-6 py-1.5 rounded font-medium bg-amber-100 text-gray-700 hover:bg-[#E17654] hover:text-amber-100 transition duration-200"
+                >
+                    Simple
+                </button>
+
+                <button
+                    onClick={() => setSearchParams({ type: 'luxury' })}
+                    className="h-[34px] px-6 py-1.5 rounded font-medium bg-amber-100 text-gray-700 hover:bg-black hover:text-amber-100 transition duration-200"
+                >
+                    Luxury
+                </button>
+
+                <button
+                    onClick={() => setSearchParams({ type: 'rugged' })}
+                    className="h-[34px] px-6 py-1.5 rounded font-medium bg-amber-100 text-gray-700 hover:bg-teal-800 hover:text-amber-100 transition duration-200"
+                >
+                    Rugged
+                </button>
+
+                <button
+                    onClick={() => setSearchParams({})}
+                    className="h-[34px] px-6 py-1.5 rounded font-medium underline bg-transparent text-gray-700"
+                >
+                    Clear filter
+                </button>
+            </div>
+
             <div className="grid grid-cols-4 justify-items-center gap-[34px] mt-[57px]">
                 {vanElements}
             </div>
