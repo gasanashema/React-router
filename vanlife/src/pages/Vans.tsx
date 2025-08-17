@@ -7,7 +7,8 @@ const Vans = () => {
     useEffect(() => {
         fetch('/api/vans').then(res => res.json()).then(res => setVans(res.vans)).catch(e => console.log(e));
     }, []);
-    const displayedVans = searchParams.get('type') ? vans.filter(van => van.type === searchParams.get('type')) : vans
+    const searchFilert = searchParams.get('type');
+    const displayedVans = searchFilert ? vans.filter(van => van.type === searchFilert) : vans
     const vanElements = displayedVans.map(van => (
         <div key={van.id} className="van-tile">
             <Link to={`/vans/${van.id}`} aria-label={`View details for ${van.name}, priced at $${van.price} per day`}>
@@ -45,31 +46,34 @@ const Vans = () => {
             <div className="flex space-x-5">
                 <button
                     onClick={() => setSearchParams({ type: 'simple' })}
-                    className="h-[34px] px-6 py-1.5 rounded font-medium bg-amber-100 text-gray-700 hover:bg-[#E17654] hover:text-amber-100 transition duration-200"
+                    className={`h-[34px] px-6 py-1.5 rounded font-medium  hover:bg-[#E17654] hover:text-amber-100 transition duration-200 ${searchFilert === 'simple' ? 'bg-[#E17654] text-amber-100' : 'bg-amber-100 text-gray-700'}`}
                 >
                     Simple
                 </button>
 
                 <button
                     onClick={() => setSearchParams({ type: 'luxury' })}
-                    className="h-[34px] px-6 py-1.5 rounded font-medium bg-amber-100 text-gray-700 hover:bg-black hover:text-amber-100 transition duration-200"
+                    className={`h-[34px] px-6 py-1.5 rounded font-medium  hover:bg-black hover:text-amber-100 transition duration-200 ${searchFilert === 'luxury' ? 'bg-black text-amber-100' : 'bg-amber-100 text-gray-700'}`}
                 >
                     Luxury
                 </button>
 
                 <button
                     onClick={() => setSearchParams({ type: 'rugged' })}
-                    className="h-[34px] px-6 py-1.5 rounded font-medium bg-amber-100 text-gray-700 hover:bg-teal-800 hover:text-amber-100 transition duration-200"
+                    className={`h-[34px] px-6 py-1.5 rounded font-medium hover:bg-teal-800 hover:text-amber-100 transition duration-200 ${searchFilert === 'rugged' ? 'bg-teal-800 text-amber-100' : 'bg-amber-100 text-gray-700'}`}
                 >
                     Rugged
                 </button>
-
-                <button
+                {searchFilert? (
+                    <button
                     onClick={() => setSearchParams({})}
                     className="h-[34px] px-6 py-1.5 rounded font-medium underline bg-transparent text-gray-700"
                 >
                     Clear filter
                 </button>
+                ):
+                ''}
+                
             </div>
 
             <div className="grid grid-cols-4 justify-items-center gap-[34px] mt-[57px]">
