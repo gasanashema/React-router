@@ -1,19 +1,25 @@
 import { useEffect, useState } from "react"
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 
 const HostVans = () => {
+
+    const [searchParams, setSearchParams] = useSearchParams();
+    const filertType = searchParams.get('type');
+
     const [vans,setVans] = useState([]);
     useEffect(() => {
         fetch("/api/host/vans")
             .then(res => res.json())
             .then(data => setVans(data.vans))
     },[]);
+
+    const displayedVans = filertType ? vans.filter(van => van.type === filertType) : vans;
    return (
         <section>
             <h1 className="px-[26px] text-xl font-semibold">Your listed vans</h1>
             <div className="px-[26px]">
-                {vans.length > 0 ? (
-                    <section>{vans.map(van => (
+                {displayedVans.length > 0 ? (
+                    <section>{displayedVans.map(van => (
         <Link
             to={`/host/vans/${van.id}`}
             key={van.id}
