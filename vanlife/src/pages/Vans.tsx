@@ -1,11 +1,19 @@
 import { useEffect, useState } from "react"
 import { Link, useSearchParams } from "react-router-dom";
-
+import { getVans } from "../api";
 const Vans = () => {
     const [searchParams, setSearchParams] = useSearchParams();
     const [vans, setVans] = useState([])
+    const [loading,setLoading] = useState(false);
     useEffect(() => {
-        fetch('/api/vans').then(res => res.json()).then(res => setVans(res.vans)).catch(e => console.log(e));
+         async function loadVans() {
+            setLoading(true);
+            const data = await getVans()
+            setVans(data);
+            setLoading(false);
+        }
+        
+        loadVans()
     }, []);
     const searchFilert = searchParams.get('type');
     const displayedVans = searchFilert ? vans.filter(van => van.type === searchFilert) : vans
@@ -39,6 +47,9 @@ const Vans = () => {
         </div>
 
     ));
+    if (loading) {
+        return <h1>Loading...</h1>
+    }
 
     return (
         <div className="px-[23px]">
