@@ -4,22 +4,29 @@ import { getVans } from "../api";
 const Vans = () => {
     const [searchParams, setSearchParams] = useSearchParams();
     const [vans, setVans] = useState([])
-    const [loading,setLoading] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null)
     useEffect(() => {
-         async function loadVans() {
+        async function loadVans() {
             setLoading(true);
-            const data = await getVans()
-            setVans(data);
+            try {
+                const data = await getVans()
+                setVans(data)
+            } catch (err) {
+                setError(err)
+            } finally {
+                setLoading(false)
+            }
             setLoading(false);
         }
-        
+
         loadVans()
     }, []);
     const searchFilert = searchParams.get('type');
     const displayedVans = searchFilert ? vans.filter(van => van.type === searchFilert) : vans
     const vanElements = displayedVans.map(van => (
         <div key={van.id} className="van-tile">
-            <Link to={van.id} state={{search: searchParams.toString()}} aria-label={`View details for ${van.name}, priced at $${van.price} per day`}>
+            <Link to={van.id} state={{ search: searchParams.toString() }} aria-label={`View details for ${van.name}, priced at $${van.price} per day`}>
                 <img
                     src={van.imageUrl}
                     className="max-w-full rounded-md"
@@ -48,7 +55,11 @@ const Vans = () => {
 
     ));
     if (loading) {
-        return <h1>Loading...</h1>
+        return <h1 aria-live="polite">Loading...</h1>
+    }
+
+    if (error) {
+        return <h1 aria-live="assertive">There was an error: {error.message}</h1>
     }
 
     return (
@@ -75,16 +86,16 @@ const Vans = () => {
                 >
                     Rugged
                 </button>
-                {searchFilert? (
+                {searchFilert ? (
                     <button
-                    onClick={() => setSearchParams({})}
-                    className="h-[34px] px-6 py-1.5 rounded font-medium underline bg-transparent text-gray-700"
-                >
-                    Clear filter
-                </button>
-                ):
-                ''}
-                
+                        onClick={() => setSearchParams({})}
+                        className="h-[34px] px-6 py-1.5 rounded font-medium underline bg-transparent text-gray-700"
+                    >
+                        Clear filter
+                    </button>
+                ) :
+                    ''}
+
             </div>
 
             <div className="grid grid-cols-4 justify-items-center gap-[34px] mt-[57px]">
