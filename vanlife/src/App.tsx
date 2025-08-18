@@ -14,6 +14,7 @@ import HostVanDetail from "./pages/Host/HostVanDetail"
 import Details from "./pages/Host/HostVanDetail/Details"
 import Pricing from "./pages/Host/HostVanDetail/Pricing"
 import Photos from "./pages/Host/HostVanDetail/Photos"
+import NotFount404 from "./pages/NotFount404"
 function App() {
   return (
     <BrowserRouter>
@@ -38,6 +39,7 @@ function App() {
             </Route>
 
           </Route>
+          <Route path="*" element={<NotFount404 />} />
         </Route>
 
       </Routes>
