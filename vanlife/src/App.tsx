@@ -2,7 +2,7 @@ import { createBrowserRouter, createRoutesFromElements, RouterProvider, Routes, 
 import Home from './pages/Home'
 import About from "./pages/About"
 import "./server"
-import Vans from "./pages/Vans"
+import Vans,{loader as vansPageLoader} from "./pages/Vans"
 import VanDetail from "./pages/VanDetail"
 import Layout from "./components/Layout"
 import Dashboard from "./pages/Host/Dashboard"
@@ -20,7 +20,7 @@ function App() {
     <Route path="/" element={<Layout />}>
       <Route index element={<Home />} />
       <Route path="about" element={<About />} />
-      <Route path="vans" element={<Vans />} />
+      <Route path="vans" element={<Vans />} loader={vansPageLoader} />
       <Route path="vans/:id" element={<VanDetail />} />
       {/* Host */}
       <Route path="host" element={<HostLayout />}>
