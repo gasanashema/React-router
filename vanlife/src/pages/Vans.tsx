@@ -11,7 +11,7 @@ const Vans = () => {
     const displayedVans = searchFilert ? vans.filter(van => van.type === searchFilert) : vans
     const vanElements = displayedVans.map(van => (
         <div key={van.id} className="van-tile">
-            <Link to={`/vans/${van.id}`} aria-label={`View details for ${van.name}, priced at $${van.price} per day`}>
+            <Link to={van.id} state={{search: searchParams.toString()}} aria-label={`View details for ${van.name}, priced at $${van.price} per day`}>
                 <img
                     src={van.imageUrl}
                     className="max-w-full rounded-md"

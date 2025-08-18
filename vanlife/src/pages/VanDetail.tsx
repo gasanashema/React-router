@@ -1,13 +1,20 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom"
+import { Link, useLocation, useParams } from "react-router-dom"
 
 const VanDetail = () => {
     const params = useParams();
     const [van, setVan] = useState(null);
+    const location = useLocation();
     useEffect(() => {
         fetch(`/api/vans/${params.id}`).then(res => res.json()).then(data => setVan(data.vans));
     }, [params.id])
     return (
+      <>
+      <Link
+              to={`../?${location.state.search}`}
+              relative='path'
+              className="px-16"
+            >&larr; <span>Back to all vans</span></Link>
        <div className="p-[27px]">
   {van ? (
     <div className="flex flex-col text-[#161616]">
@@ -34,7 +41,7 @@ const VanDetail = () => {
     <h2>Loading...</h2>
   )}
 </div>
-
+</>
     )
 }
 

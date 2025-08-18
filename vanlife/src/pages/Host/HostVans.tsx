@@ -21,7 +21,7 @@ const HostVans = () => {
                 {displayedVans.length > 0 ? (
                     <section>{displayedVans.map(van => (
         <Link
-            to={`/host/vans/${van.id}`}
+            to={van.id}
             key={van.id}
             className="no-underline text-inherit"
         >
