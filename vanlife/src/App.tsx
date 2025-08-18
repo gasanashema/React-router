@@ -15,12 +15,13 @@ import Details from "./pages/Host/HostVanDetail/Details"
 import Pricing from "./pages/Host/HostVanDetail/Pricing"
 import Photos from "./pages/Host/HostVanDetail/Photos"
 import NotFount404 from "./pages/NotFount404"
+import Error from "./pages/Error"
 function App() {
   const router = createBrowserRouter(createRoutesFromElements(
     <Route path="/" element={<Layout />}>
       <Route index element={<Home />} />
       <Route path="about" element={<About />} />
-      <Route path="vans" element={<Vans />} loader={vansPageLoader} />
+      <Route path="vans" element={<Vans />} loader={vansPageLoader} errorElement={<Error/>}/>
       <Route path="vans/:id" element={<VanDetail />} />
       {/* Host */}
       <Route path="host" element={<HostLayout />}>
