@@ -1,3 +1,4 @@
+import { CircleUser } from "lucide-react"
 import { NavLink } from "react-router-dom"
 const Header = () => {
   return (
@@ -34,6 +35,9 @@ const Header = () => {
       >
         Vans
       </NavLink>
+      <NavLink to="login" className={({ isActive }: { isActive: boolean }) =>
+           isActive ? "hover:text-gray-900 font-semibold text-amber-700" : "text-gray-700 hover:text-gray-900 font-semibold"
+        }><CircleUser /></NavLink>
     </div>
   </nav>
 </header>
