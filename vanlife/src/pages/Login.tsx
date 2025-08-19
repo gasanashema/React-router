@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 
-const Login = () => {
+const Login:React.FC = () => {
     const [loginFormData,setLoginFormData] = useState({email:'',password:''});
 
     function handleSubmit(e){
