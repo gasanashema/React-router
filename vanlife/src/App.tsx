@@ -2,8 +2,8 @@ import { createBrowserRouter, createRoutesFromElements, RouterProvider, Route } 
 import Home from './pages/Home'
 import About from "./pages/About"
 import "./server"
-import Vans,{loader as vansPageLoader} from "./pages/Vans"
-import VanDetail from "./pages/VanDetail"
+import Vans, { loader as vansPageLoader } from "./pages/Vans"
+import VanDetail, { VanDetailLoader } from "./pages/VanDetail"
 import Layout from "./components/Layout"
 import Dashboard from "./pages/Host/Dashboard"
 import Reviews from "./pages/Host/Reviews"
@@ -17,13 +17,14 @@ import Photos from "./pages/Host/HostVanDetail/Photos"
 import NotFount404 from "./pages/NotFount404"
 import Error from "./pages/Error"
 import Login from "./pages/Login"
+
 function App() {
   const router = createBrowserRouter(createRoutesFromElements(
     <Route path="/" element={<Layout />}>
       <Route index element={<Home />} />
       <Route path="about" element={<About />} />
       <Route path="login" element={<Login />} />
-      <Route path="vans" element={<Vans />} loader={vansPageLoader} errorElement={<Error/>}/>
+      <Route path="vans" element={<Vans />} loader={vansPageLoader} errorElement={<Error />} />
       <Route path="vans/:id" element={<VanDetail />} />
       {/* Host */}
       <Route path="host" element={<HostLayout />}>

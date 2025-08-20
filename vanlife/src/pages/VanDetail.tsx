@@ -1,5 +1,11 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation, useParams } from "react-router-dom"
+import { getVans } from "../api";
+
+export function VanDetailLoader({params}) {
+  const {id} = params;
+  return getVans(id);
+}
 
 const VanDetail = () => {
     const params = useParams();
