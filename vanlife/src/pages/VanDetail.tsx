@@ -1,19 +1,14 @@
-import { useEffect, useState } from "react";
-import { Link, useLocation, useParams } from "react-router-dom"
+import { Link, useLoaderData, useLocation } from "react-router-dom"
 import { getVans } from "../api";
 
-export function VanDetailLoader({params}) {
-  const {id} = params;
-  return getVans(id);
+export function loader({ params }) {
+    return getVans(params.id)
 }
 
 const VanDetail = () => {
-    const params = useParams();
-    const [van, setVan] = useState(null);
+    const van = useLoaderData();
     const location = useLocation();
-    useEffect(() => {
-        fetch(`/api/vans/${params.id}`).then(res => res.json()).then(data => setVan(data.vans));
-    }, [params.id])
+    
     return (
       <>
       <Link
@@ -22,7 +17,7 @@ const VanDetail = () => {
               className="px-16"
             >&larr; <span>Back to all vans</span></Link>
        <div className="p-[27px]">
-  {van ? (
+  
     <div className="flex flex-col text-[#161616]">
       <img
         src={van.imageUrl}
@@ -43,9 +38,7 @@ const VanDetail = () => {
         Rent this van
       </button>
     </div>
-  ) : (
-    <h2>Loading...</h2>
-  )}
+  
 </div>
 </>
     )

@@ -2,8 +2,8 @@ import { createBrowserRouter, createRoutesFromElements, RouterProvider, Route } 
 import Home from './pages/Home'
 import About from "./pages/About"
 import "./server"
-import Vans, { loader as vansPageLoader } from "./pages/Vans"
-import VanDetail, { VanDetailLoader } from "./pages/VanDetail"
+import Vans, { loader as vansLoader } from "./pages/Vans"
+import VanDetail, {loader as VanDetailLoader } from "./pages/VanDetail"
 import Layout from "./components/Layout"
 import Dashboard from "./pages/Host/Dashboard"
 import Reviews from "./pages/Host/Reviews"
@@ -24,14 +24,14 @@ function App() {
       <Route index element={<Home />} />
       <Route path="about" element={<About />} />
       <Route path="login" element={<Login />} />
-      <Route path="vans" element={<Vans />} loader={vansPageLoader} errorElement={<Error />} />
-      <Route path="vans/:id" element={<VanDetail />} />
+      <Route path="vans" element={<Vans />} loader={vansLoader} errorElement={<Error />} />
+      <Route path="vans/:id" element={<VanDetail />} loader={VanDetailLoader} />
       {/* Host */}
       <Route path="host" element={<HostLayout />}>
         <Route index element={<Dashboard />} />
         <Route path="income" element={<Income />} />
         <Route path="reviews" element={<Reviews />} />
-        <Route path="vans" element={<HostVans />} />
+        <Route path="vans" element={<HostVans />} loader={vansLoader} errorElement={<Error />} />
 
         <Route path="vans/:id" element={<HostVanDetail />} >
           <Route index element={<Details />} />
