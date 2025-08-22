@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react"
+// import { useEffect, useState } from "react"
 import { Link, useLoaderData, useSearchParams } from "react-router-dom";
 import { getHostVans } from "../../api";
 
-const loader = () =>{
+export const loader = () =>{
     return getHostVans();
 }
 const HostVans = () => {

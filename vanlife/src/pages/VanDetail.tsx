@@ -2,7 +2,8 @@ import { Link, useLoaderData, useLocation } from "react-router-dom"
 import { getVans } from "../api";
 
 export function loader({ params }) {
-    return getVans(params.id)
+  const { id } = params
+    return getVans(id)
 }
 
 const VanDetail = () => {

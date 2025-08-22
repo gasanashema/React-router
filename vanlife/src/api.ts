@@ -1,4 +1,7 @@
-export async function getVans(id) {
+type Prop = {
+id:string | null
+}
+export async function getVans(id:Prop):Promise<[]|{}> {
     const url = id ? `/api/vans/${id}` : "/api/vans"
     const res = await fetch(url)
     if (!res.ok) {
@@ -12,7 +15,7 @@ export async function getVans(id) {
     return data.vans
 }
 
-export async function getHostVans(id) {
+export async function getHostVans(id:Prop):Promise<[]|{}> {
     const url = id ? `/api/host/vans/${id}` : "/api/host/vans"
     const res = await fetch(url)
     if (!res.ok) {
@@ -23,5 +26,6 @@ export async function getHostVans(id) {
         }
     }
     const data = await res.json()
+
     return data.vans
 }

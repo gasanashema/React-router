@@ -9,8 +9,8 @@ import Dashboard from "./pages/Host/Dashboard"
 import Reviews from "./pages/Host/Reviews"
 import Income from "./pages/Host/Income"
 import HostLayout from "./components/HostLayout"
-import HostVans from "./pages/Host/HostVans"
-import HostVanDetail from "./pages/Host/HostVanDetail"
+import HostVans, {loader as HostVansLoader} from "./pages/Host/HostVans"
+import HostVanDetail, {loader as HostVanDetailLoader} from "./pages/Host/HostVanDetail"
 import Details from "./pages/Host/HostVanDetail/Details"
 import Pricing from "./pages/Host/HostVanDetail/Pricing"
 import Photos from "./pages/Host/HostVanDetail/Photos"
@@ -31,9 +31,9 @@ function App() {
         <Route index element={<Dashboard />} />
         <Route path="income" element={<Income />} />
         <Route path="reviews" element={<Reviews />} />
-        <Route path="vans" element={<HostVans />} loader={vansLoader} errorElement={<Error />} />
+        <Route path="vans" element={<HostVans />} loader={HostVansLoader} errorElement={<Error />} />
 
-        <Route path="vans/:id" element={<HostVanDetail />} >
+        <Route path="vans/:id" element={<HostVanDetail />} loader={HostVanDetailLoader} >
           <Route index element={<Details />} />
           <Route path="pricing" element={<Pricing />} />
           <Route path="photos" element={<Photos />} />
