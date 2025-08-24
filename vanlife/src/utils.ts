@@ -5,4 +5,5 @@ export function requireAuth(){
     if(!isLoggedIn){
         throw redirect('/home');
     }
+    
 }
